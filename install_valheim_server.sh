@@ -15,7 +15,7 @@ sudo touch /home/steam/ValheimServ/valheim.sh && echo 'valheim.sh Created...'
 
 # Installation/Validation Script
 sudo echo '#!/bin/sh
-steamcmd +@sSteamCmdForcePlatformType linux +login <user> <pass> +force_install_dir /home/steam/Valheim +app_update 896660 validate +quit' >> /home/steam/ValheimServ/InstallUpdate.sh
+steamcmd +login anonymous +force_install_dir /home/steam/Valheim +app_update 896660 validate +exit' >> /home/steam/ValheimServ/InstallUpdate.sh
 sudo chmod +x /home/steam/ValheimServ/InstallUpdate.sh
 
 ## Sub Steam User
@@ -23,11 +23,32 @@ sudo -iu steam
 cd /home/steam/Steam
 curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
-echo '#!/bin/sh 
-export templdpath=$LD_LIBRARY_PATH  
-export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH  
-export SteamAppID=896660
+echo '#!/bin/bash
 
-echo "Starting server PRESS CTRL-C to exit"  
-./valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 <-nographics> <-batchmode> -world "Bearclawheim" -password "brick" -public 1 
-export LD_LIBRARY_PATH=$templdpath' >> /home/steam/ValheimServ/valheim.sh
+export templdpath=$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
+export SteamAppId=892970
+
+# Tip: Make a local copy of this script to avoid it being overwritten by steam.
+# NOTE: Minimum password length is 5 characters & Password cant be in the server name.
+# NOTE: You need to make sure the ports 2456-2458 is being forwarded to your server through your local router & firewall.
+steamcmd +login anonymous +force_install_dir /home/steam/ValheimServ +app_update 896660 +quit
+
+./valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 -world "Bearclawheim" -password "<lolstealmycreds>" -public 1 > /dev/null &
+
+export LD_LIBRARY_PATH=$templdpath
+
+echo "Server started"
+echo ""
+#read -p "Press RETURN to stop server"
+#echo 1 > server_exit.drp
+
+#echo "Server exit signal set"
+#echo "You can now close this terminal"
+
+while :
+do
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+echo "valheim.service: timestamp ${TIMESTAMP}"
+sleep 60
+done' >> /home/steam/ValheimServ/valheim.sh
