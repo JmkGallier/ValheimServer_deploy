@@ -9,6 +9,7 @@ sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-li
 # Steam User Prep
 sudo useradd -m steam
 sudo mkdir /home/steam/ValheimServ
+sudo mkdir /home/steam/Steam
 sudo touch /home/steam/ValheimServ/InstallUpdate.sh && echo 'InstallUpdate.sh Created...'
 sudo touch /home/steam/ValheimServ/valheim.sh && echo 'valheim.sh Created...'
 
@@ -28,6 +29,5 @@ export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
 export SteamAppID=896660
 
 echo "Starting server PRESS CTRL-C to exit"  
-./valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 <-nographics> <-batchmode> -world "Bearclawheim" -password "brick" -public 1  
+./valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 <-nographics> <-batchmode> -world "Bearclawheim" -password "brick" -public 1 
 export LD_LIBRARY_PATH=$templdpath' >> /home/steam/ValheimServ/valheim.sh
-
