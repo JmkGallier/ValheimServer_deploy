@@ -4,7 +4,6 @@
 sudo apt update
 sudo dpkg --add-architecture i386
 sudo apt update
-sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 steamcmd
 
 # Steam User Prep
 sudo useradd -m steam
@@ -19,9 +18,7 @@ steamcmd +login anonymous +force_install_dir /home/steam/ValheimServ +app_update
 sudo chmod +x /home/steam/ValheimServ/InstallUpdate.sh
 
 ## Sub Steam User
-sudo su steam
-cd /home/steam/Steam
-curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+sudo apt install steamcmd lib32gcc1
 
 echo '#!/bin/bash
 
