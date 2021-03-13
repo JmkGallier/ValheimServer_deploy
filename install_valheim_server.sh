@@ -19,7 +19,7 @@ steamcmd +login anonymous +force_install_dir /home/steam/ValheimServ +app_update
 sudo chmod +x /home/steam/ValheimServ/InstallUpdate.sh
 
 ## Sub Steam User
-sudo -iu steam
+sudo su steam
 cd /home/steam/Steam
 curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
@@ -48,11 +48,11 @@ echo ""
 
 while :
 do
-TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 echo "valheim.service: timestamp ${TIMESTAMP}"
 sleep 60
 done' >> /home/steam/ValheimServ/valheim.sh
 
 
-sudo chmod -R steam /home/steam/ValheimServ
-sudo chmod -R steam /home/steam/Steam
+sudo chown -R steam /home/steam/ValheimServ
+sudo chown -R steam /home/steam/Steam
