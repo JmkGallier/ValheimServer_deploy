@@ -10,6 +10,8 @@ sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-li
 sudo useradd -m steam
 sudo mkdir /home/steam/ValheimServ
 sudo mkdir /home/steam/Steam
+sudo chmod -R 777 /home/steam/ValheimServ
+sudo chmod -R 777 /home/steam/Steam
 
 # Installation/Validation Script
 echo '#!/bin/sh
@@ -50,3 +52,7 @@ TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 echo "valheim.service: timestamp ${TIMESTAMP}"
 sleep 60
 done' >> /home/steam/ValheimServ/valheim.sh
+
+
+sudo chmod -R steam /home/steam/ValheimServ
+sudo chmod -R steam /home/steam/Steam
