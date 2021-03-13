@@ -31,7 +31,7 @@ export SteamAppId=892970
 # NOTE: You need to make sure the ports 2456-2458 is being forwarded to your server through your local router & firewall.
 steamcmd +login anonymous +force_install_dir /home/steam/ValheimServ +app_update 896660 +quit
 
-./home/steam/ValheimServ/valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 -world "Bearclawheim" -password "<lolstealmycreds>" -public 1 > /dev/null &
+/home/steam/ValheimServ/valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 -world "Bearclawheim" -password "<lolstealmycreds>" -public 1 > /dev/null &
 
 export LD_LIBRARY_PATH=$templdpath
 
