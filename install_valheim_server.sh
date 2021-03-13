@@ -10,12 +10,10 @@ sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-li
 sudo useradd -m steam
 sudo mkdir /home/steam/ValheimServ
 sudo mkdir /home/steam/Steam
-sudo touch /home/steam/ValheimServ/InstallUpdate.sh && echo 'InstallUpdate.sh Created...'
-sudo touch /home/steam/ValheimServ/valheim.sh && echo 'valheim.sh Created...'
 
 # Installation/Validation Script
-sudo echo '#!/bin/sh
-steamcmd +login anonymous +force_install_dir /home/steam/Valheim +app_update 896660 validate +exit' >> /home/steam/ValheimServ/InstallUpdate.sh
+echo '#!/bin/sh
+steamcmd +login anonymous +force_install_dir /home/steam/ValheimServ +app_update 896660 validate +exit' >> /home/steam/ValheimServ/InstallUpdate.sh
 sudo chmod +x /home/steam/ValheimServ/InstallUpdate.sh
 
 ## Sub Steam User
