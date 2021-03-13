@@ -51,7 +51,7 @@ sleep 60
 done' >> /home/steam/ValheimServ/valheim.sh
 sudo chmod +x /home/steam/ValheimServ/valheim.sh
 
-sudo echo '[Unit]
+sudo su echo '[Unit]
 Description=Valheim service
 Wants=network.target
 After=syslog.target network-online.target
