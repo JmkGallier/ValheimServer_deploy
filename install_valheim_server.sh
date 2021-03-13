@@ -49,7 +49,7 @@ TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 echo "valheim.service: timestamp ${TIMESTAMP}"
 sleep 60
 done' >> /home/steam/ValheimServ/valheim.sh
-
+sudo chmod +x /home/steam/ValheimServ/valheim.sh
 
 sudo chown -R steam /home/steam/ValheimServ
 sudo chown -R steam /home/steam/Steam
