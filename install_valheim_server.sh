@@ -18,7 +18,7 @@ steamcmd +login anonymous +force_install_dir /home/steam/ValheimServ +app_update
 sudo chmod +x /home/steam/ValheimServ/InstallUpdate.sh
 
 ## Sub Steam User
-sudo apt install steamcmd lib32gcc1
+sudo apt install steamcmd lib32gcc1 net-tools
 
 echo '#!/bin/bash
 
@@ -31,7 +31,7 @@ export SteamAppId=892970
 # NOTE: You need to make sure the ports 2456-2458 is being forwarded to your server through your local router & firewall.
 steamcmd +login anonymous +force_install_dir /home/steam/ValheimServ +app_update 896660 +quit
 
-./valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 -world "Bearclawheim" -password "<lolstealmycreds>" -public 1 > /dev/null &
+./home/steam/ValheimServ/valheim_server.x86_64 -name "SSD Viking Lounge" -port 2456 -world "Bearclawheim" -password "<lolstealmycreds>" -public 1 > /dev/null &
 
 export LD_LIBRARY_PATH=$templdpath
 
@@ -50,6 +50,23 @@ echo "valheim.service: timestamp ${TIMESTAMP}"
 sleep 60
 done' >> /home/steam/ValheimServ/valheim.sh
 sudo chmod +x /home/steam/ValheimServ/valheim.sh
+
+echo '[Unit]
+Description=Valheim service
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+User=steam
+WorkingDirectory=/home/steam/ValheimServ
+ExecStart=/home/steam/ValheimServ/valheim.sh
+
+[Install]
+WantedBy=multi-user.target' >> /etc/systemd/system/valheim.service
+sudo systemctl daemon-reload
 
 sudo chown -R steam /home/steam/ValheimServ
 sudo chown -R steam /home/steam/Steam
