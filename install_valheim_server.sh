@@ -13,7 +13,7 @@ sudo touch /home/steam/ValheimServ/InstallUpdate.sh && echo 'InstallUpdate.sh Cr
 sudo touch /home/steam/ValheimServ/valheim.sh && echo 'valheim.sh Created...'
 
 # Installation/Validation Script
-echo '#!/bin/sh
+sudo echo '#!/bin/sh
 steamcmd +@sSteamCmdForcePlatformType linux +login <user> <pass> +force_install_dir /path/to/server +app_update 896660 validate +quit' >> /home/steam/ValheimServ/InstallUpdate.sh
 sudo chmod +x /home/steam/ValheimServ/InstallUpdate.sh
 
