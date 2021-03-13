@@ -7,10 +7,10 @@ sudo apt update
 sudo apt install curl wget file tar bzip2 gzip unzip bsdmainutils python util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 steamcmd
 
 # Steam User Prep
-useradd -m steam
-mkdir /home/steam/ValheimServ
-touch /home/steam/ValheimServ/InstallUpdate.sh && echo 'InstallUpdate.sh Created...'
-touch /home/steam/ValheimServ/valheim.sh && echo 'valheim.sh Created...'
+sudo useradd -m steam
+sudo mkdir /home/steam/ValheimServ
+sudo touch /home/steam/ValheimServ/InstallUpdate.sh && echo 'InstallUpdate.sh Created...'
+sudo touch /home/steam/ValheimServ/valheim.sh && echo 'valheim.sh Created...'
 
 # Installation/Validation Script
 echo '#!/bin/sh
