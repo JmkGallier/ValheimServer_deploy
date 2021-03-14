@@ -10,14 +10,14 @@ sudo apt update
 sudo mkdir -p "/home/${CALLER}/ValheimServ"
 
 # Installation/Validation Script
-echo '#!/bin/sh
+sudo echo '#!/bin/sh
 steamcmd +login anonymous +force_install_dir /home/${CALLER}/ValheimServ +app_update 896660 validate +exit' >> /home/${CALLER}/ValheimServ/InstallUpdate.sh
 sudo chmod +x /home/${CALLER}/ValheimServ/InstallUpdate.sh
 
 ## Sub Steam User
 sudo apt install steamcmd lib32gcc1 net-tools
 
-echo '#!/bin/bash
+sudo echo '#!/bin/bash
 
 export templdpath=$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
