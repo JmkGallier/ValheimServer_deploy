@@ -10,14 +10,14 @@ sudo apt update
 sudo mkdir -p "/home/${CALLER}/ValheimServ"
 
 # Installation/Validation Script
-sudo echo '#!/bin/sh
-steamcmd +login anonymous +force_install_dir /home/${CALLER}/ValheimServ +app_update 896660 validate +exit' >> /home/${CALLER}/ValheimServ/InstallUpdate.sh
+echo '#!/bin/sh
+steamcmd +login anonymous +force_install_dir /home/${CALLER}/ValheimServ +app_update 896660 validate +exit' | sudo tee /home/${CALLER}/ValheimServ/InstallUpdate.sh
 sudo chmod +x /home/${CALLER}/ValheimServ/InstallUpdate.sh
 
 ## Sub Steam User
 sudo apt install steamcmd lib32gcc1 net-tools
 
-sudo echo '#!/bin/bash
+echo '#!/bin/bash
 
 export templdpath=$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=./linux64:$LD_LIBRARY_PATH
@@ -47,10 +47,10 @@ do
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 echo "valheim.service: timestamp ${TIMESTAMP}"
 sleep 60
-done' >> /home/${CALLER}/ValheimServ/valheim.sh
+done' | sudo tee /home/${CALLER}/ValheimServ/valheim.sh
 sudo chmod +x /home/${CALLER}/ValheimServ/valheim.sh
 
-sudo su echo '[Unit]
+echo '[Unit]
 Description=Valheim service
 Wants=network.target
 After=syslog.target network-online.target
@@ -59,12 +59,12 @@ After=syslog.target network-online.target
 Type=simple
 Restart=on-failure
 RestartSec=10
-User=steam
+User=${CALLER}
 WorkingDirectory=/home/${CALLER}/ValheimServ
 ExecStart=/home/${CALLER}/ValheimServ/valheim.sh
 
 [Install]
-WantedBy=multi-user.target' >> /etc/systemd/system/valheim.service
+WantedBy=multi-user.target' | sudo tee /etc/systemd/system/valheim.service
 sudo systemctl daemon-reload
 
 
